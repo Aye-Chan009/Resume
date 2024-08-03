@@ -2,7 +2,7 @@
 const counter = document.querySelector(".count");
 async function updateCounter() {
     //let response = await fetch("https://zqini5jtlkzelhgdzsudbq47ky0fnxzb.lambda-url.ap-southeast-2.on.aws/");
-    //let response = await fetch("https://api.aye-chan.net/");
+    let response = await fetch("https://api.aye-chan.net/");
     let data = await response.json();
     counter.innerHTML = `This webpage has been visited ${data} times`;
 }
