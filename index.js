@@ -37,17 +37,17 @@ window.addEventListener('scroll', e => {
 //send email
 function invokeAWSAPI(e) {
   e.preventDefault();           
-  var subject = $("#name").val();
+  var name = $("#name").val();
   var email = $("#email").val();
-  var message = $("#message").val();
+  var msg = $("#message").val();
   var data = {
-     subject : subject,
-     message : message,
-     email : email
+     name : name,
+     email : email,
+     msg : msg
    };
 $.ajax({
     type: "POST",
-    url : "https://v4uftcj3yvkh3zjonikann2zby0yypcr.lambda-url.ap-southeast-2.on.aws/",
+    url : "https://cn2cdyryxf.execute-api.ap-southeast-2.amazonaws.com/newstage/",
     dataType: "json",
     crossDomain: "true",
     contentType: "application/json; charset=utf-8",

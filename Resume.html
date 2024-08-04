@@ -270,7 +270,7 @@
     <div id="layout">
         <div id="contactme">
             <h2>Contact Me</h2>
-                <form id="contact-form">
+                <form id="contact-form" method="post">
                     <label for="name">Name:</label>
                     <br>
                     <input id="name" name="name" type="text" placeholder="Enter your Name.."/><br/><br/>
@@ -280,10 +280,7 @@
                     <label for="name">Message:</label>
                     <br>
                     <textarea id="message" name="message" rows="5" placeholder="Enter your message.."></textarea><br/><br/>
-                    <input type="submit"/>
-                        <div>
-                            <p id="result-text"></p>
-                        </div>
+                    <button class="primary-button" onClick="submitToAPI(event)">Submit</button>
                 </form>
         </div>
         <div id="footer">
