@@ -47,7 +47,7 @@ function invokeAWSAPI(e) {
    };
 $.ajax({
     type: "POST",
-    url : "https://v4uftcj3yvkh3zjonikann2zby0yypcr.lambda-url.ap-southeast-2.on.aws",
+    url : "https://v4uftcj3yvkh3zjonikann2zby0yypcr.lambda-url.ap-southeast-2.on.aws/",
     dataType: "json",
     crossDomain: "true",
     contentType: "application/json; charset=utf-8",
