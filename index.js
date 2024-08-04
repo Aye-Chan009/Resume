@@ -56,7 +56,7 @@ document.getElementById('contact-form').addEventListener('submit', function(even
 function submitForm(formData) {
 
   //fetch('https://bcmt5kmizf.execute-api.ap-southeast-2.amazonaws.com/default/sendemail', { 
-  fetch('https://v4uftcj3yvkh3zjonikann2zby0yypcr.lambda-url.ap-southeast-2.on.aws/', { 
+  fetch('https://v4uftcj3yvkh3zjonikann2zby0yypcr.lambda-url.ap-southeast-2.on.aws', { 
 
     method: 'POST',
     headers: {
