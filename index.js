@@ -44,7 +44,8 @@ form.addEventListener("submit", (event) => {
 
 	// Use your API endpoint URL you copied from the previous step
   const endpoint =
-    "https://bcmt5kmizf.execute-api.ap-southeast-2.amazonaws.com/default/sendemail";
+    //"https://bcmt5kmizf.execute-api.ap-southeast-2.amazonaws.com/default/sendemail";
+    "https://v4uftcj3yvkh3zjonikann2zby0yypcr.lambda-url.ap-southeast-2.on.aws/";
   // We use JSON.stringify here so the data can be sent as a string via HTTP
 	const body = JSON.stringify({
     subject: name.value,
