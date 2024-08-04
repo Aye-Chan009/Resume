@@ -35,83 +35,29 @@ window.addEventListener('scroll', e => {
 
 
 //send email
-document.getElementById('contact-form').addEventListener('submit', function(event) {
-  event.preventDefault(); 
-  var name = document.getElementById('name').value.trim();
-  var email = document.getElementById('email').value.trim();
-  var message = document.getElementById('message').value.trim();
-  var emailRegex = /^\S+@\S+\.\S+$/;
-  if (!name || !email || !message || !emailRegex.test(email)) {
-    alert('Please fill in all fields with valid inputs.');
-    return;
-  }
-  var formData = {
-    name: name,
-    email: email,
-    message: message
-  };
-  submitForm(formData);
-});
-
-function submitForm(formData) {
-
-  //fetch('https://bcmt5kmizf.execute-api.ap-southeast-2.amazonaws.com/default/sendemail', { 
-  fetch('https://v4uftcj3yvkh3zjonikann2zby0yypcr.lambda-url.ap-southeast-2.on.aws', { 
-
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
+function invokeAWSAPI(e) {
+  e.preventDefault();           
+  var subject = $("#name").val();
+  var email = $("#email").val();
+  var message = $("#message").val();
+  var data = {
+     subject : subject,
+     message : message,
+     email : email
+   };
+$.ajax({
+    type: "POST",
+    url : "https://v4uftcj3yvkh3zjonikann2zby0yypcr.lambda-url.ap-southeast-2.on.aws",
+    dataType: "json",
+    crossDomain: "true",
+    contentType: "application/json; charset=utf-8",
+    data: JSON.stringify(data),
+    success: function () {
+      alert("Successful");
+      document.getElementById("contact-form").reset();
+  location.reload();
     },
-    body: JSON.stringify(formData)
-  })
-  .then(function(response) {
-    if (response.ok) {
-      document.getElementById("result-text").innerText =
-        "Email sent successfully!";
-    } else {
-      throw new Error('Form submission failed.');
-    }
-  })
-  .catch(function(error) {
-    console.error(error);
-    alert('Form submission failed. Please try again later.');
-  });
+    error: function () {
+      alert("unsuccessful");
+    }});
 }
-
-/*//send email
-const form = document.querySelector("form");
-form.addEventListener("submit", (event) => {
-  // prevent the form submit from refreshing the page
-  event.preventDefault();
-
-  const { name, email, message } = event.target;
-
-	// Use your API endpoint URL you copied from the previous step
-  const endpoint =
-    //"https://bcmt5kmizf.execute-api.ap-southeast-2.amazonaws.com/default/sendemail";
-    "https://v4uftcj3yvkh3zjonikann2zby0yypcr.lambda-url.ap-southeast-2.on.aws/";
-  // We use JSON.stringify here so the data can be sent as a string via HTTP
-	const body = JSON.stringify({
-    subject: name.value,
-    email: email.value,
-    message: message.value
-  });
-  const requestOptions = {
-    method: "POST",
-    body
-  };
-
-  fetch(endpoint, requestOptions)
-    .then((response) => {
-      if (!response.ok) throw new Error("Error in fetch");
-      return response.json();
-    })
-    .then((response) => {
-      document.getElementById("result-text").innerText =
-        "Email sent successfully!";
-    })
-    .catch((error) => {
-      document.getElementById("result-text").innerText =
-        "An unkown error occured.";
-    });
-});*/
