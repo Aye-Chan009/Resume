@@ -47,7 +47,7 @@ function invokeAWSAPI(e) {
    };
 $.ajax({
     type: "POST",
-    url : "https://cn2cdyryxf.execute-api.ap-southeast-2.amazonaws.com/newstage/",
+    url : "https://equskrveuqo7gdpvvz4dkld52u0oqqod.lambda-url.ap-southeast-2.on.aws/",
     dataType: "json",
     crossDomain: "true",
     contentType: "application/json; charset=utf-8",
