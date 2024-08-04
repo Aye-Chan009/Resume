@@ -15,7 +15,7 @@
             flex-wrap: wrap;
             align-items : center;
         }
-        #photo, #contact {
+        #photo, #contact, #contactme, #footer {
             flex-basis: 50%;
             text-align: center;
         } 
@@ -96,7 +96,7 @@
             text-align: center;
         }
         @media (max-width: 640px) {
-            #photo, #contact, #aboutme, #aboutmetext, #work, #skills, #project, #edu {
+            #photo, #contact, #aboutme, #aboutmetext, #work, #skills, #project, #edu, #contactme, #footer {
                 flex-basis: 100%;
             }
             #box {
