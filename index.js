@@ -32,3 +32,38 @@ btnScrollToTop.addEventListener("click", e => {
 window.addEventListener('scroll', e => {
   btnScrollToTop.style.display = window.scrollY > 400 ? 'block' : 'none';
 });
+
+
+//send email
+const form = document.querySelector("form");
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const { name, email, message } = event.target;
+
+  const endpoint =
+    "<https://bcmt5kmizf.execute-api.ap-southeast-2.amazonaws.com/default/sendemail>";
+	const body = JSON.stringify({
+    senderName: name.value,
+    senderEmail: email.value,
+    message: message.value
+  });
+  const requestOptions = {
+    method: "POST",
+    body
+  };
+
+  fetch(endpoint, requestOptions)
+    .then((response) => {
+      if (!response.ok) throw new Error("Error in fetch");
+      return response.json();
+    })
+    .then((response) => {
+      document.getElementById("result-text").innerText =
+        "Email sent successfully!";
+    })
+    .catch((error) => {
+      document.getElementById("result-text").innerText =
+        "An unkown error occured.";
+    });
+});
