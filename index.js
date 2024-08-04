@@ -35,6 +35,50 @@ window.addEventListener('scroll', e => {
 
 
 //send email
+document.getElementById('contact-form').addEventListener('submit', function(event) {
+  event.preventDefault(); 
+  var name = document.getElementById('name').value.trim();
+  var email = document.getElementById('email').value.trim();
+  var message = document.getElementById('message').value.trim();
+  var emailRegex = /^\S+@\S+\.\S+$/;
+  if (!name || !email || !message || !emailRegex.test(email)) {
+    alert('Please fill in all fields with valid inputs.');
+    return;
+  }
+  var formData = {
+    name: name,
+    email: email,
+    message: message
+  };
+  submitForm(formData);
+});
+
+function submitForm(formData) {
+
+  //fetch('https://bcmt5kmizf.execute-api.ap-southeast-2.amazonaws.com/default/sendemail', { 
+  fetch('https://v4uftcj3yvkh3zjonikann2zby0yypcr.lambda-url.ap-southeast-2.on.aws/', { 
+
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(formData)
+  })
+  .then(function(response) {
+    if (response.ok) {
+      document.getElementById("result-text").innerText =
+        "Email sent successfully!";
+    } else {
+      throw new Error('Form submission failed.');
+    }
+  })
+  .catch(function(error) {
+    console.error(error);
+    alert('Form submission failed. Please try again later.');
+  });
+}
+
+/*//send email
 const form = document.querySelector("form");
 form.addEventListener("submit", (event) => {
   // prevent the form submit from refreshing the page
@@ -70,4 +114,4 @@ form.addEventListener("submit", (event) => {
       document.getElementById("result-text").innerText =
         "An unkown error occured.";
     });
-});
+});*/
