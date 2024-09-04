@@ -57,7 +57,7 @@
             text-align: center;
         }
         #box {
-            border-radius: 30%;
+            border-radius: 15%;
             width: auto;
             /*background-color: rgba(191, 186, 186, 1);*/
             background-color: rgba(238, 229, 229, 0.5);
@@ -101,7 +101,7 @@
                 flex-basis: 100%;
             }
             #box {
-                border-radius: 20%;
+                border-radius: 10%;
                 padding: 5%;
                 margin-top: 0%;
             }
