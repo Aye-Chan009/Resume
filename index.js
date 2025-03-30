@@ -39,18 +39,10 @@ const statusMessage = document.getElementById("form-status");
 form.addEventListener("submit", async function (e) {
     e.preventDefault();
 
-    
-    const captchaToken = grecaptcha.getResponse();
-    if (!captchaToken) {
-        statusMessage.innerText = "Please complete the CAPTCHA before submitting.";
-        return;
-    }
-
     const data = {
         name: form.name.value,
         email: form.email.value,
-        message: form.message.value,
-        "g-recaptcha-response": captchaToken  
+        message: form.message.value
     };
 
     // Show loading message
@@ -68,9 +60,8 @@ form.addEventListener("submit", async function (e) {
         const result = await response.json();
 
         if (response.ok) {
-            statusMessage.innerText = result.message || "Thank you! Your message has been sent. I’ll get back to you shortly.";
+            statusMessage.innerText = result.message || "Thank you! Your message has been sent. I will get back to you shortly.";
             form.reset();
-            grecaptcha.reset();  
         } else {
             statusMessage.innerText = result.message || "Something went wrong.";
         }
@@ -79,6 +70,5 @@ form.addEventListener("submit", async function (e) {
         statusMessage.innerText = "Network error. Please try again later.";
     }
 });
-
 
 

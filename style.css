@@ -189,7 +189,7 @@ a.logo:active {
     width: 100%;
 }
 
-#contact-form button.btn, div.g-recaptcha {
+#contact-form button.btn {
     width: fit-content;
     align-self: center;
 }
@@ -222,7 +222,7 @@ a.logo:active {
     #contact-me {
         text-align: left;
     }
-    #contact-form button.btn, div.g-recaptcha  {
+    #contact-form button.btn {
         align-self: flex-start;
     }
     #form-status {
