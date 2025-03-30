@@ -10,6 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
+      - name: Inject CONTACT_API_URL
+        run: |
+          sed -i 's|contact_api_url|${{ secrets.CONTACT_API_URL }}|' index.js
+          sed -i 's|count_api_url|${{ secrets.COUNT_API_URL }}|' index.js
+
       - uses: jakejarvis/s3-sync-action@master
         env:
           AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}

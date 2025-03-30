@@ -1,8 +1,7 @@
 //API for web visit counter
 const counter = document.querySelector(".count");
 async function updateCounter() {
-    //let response = await fetch("https://zqini5jtlkzelhgdzsudbq47ky0fnxzb.lambda-url.ap-southeast-2.on.aws/");
-    let response = await fetch("https://api.aye-chan.net/");
+    let response = await fetch("count_api_url");
     let data = await response.json();
     counter.innerHTML = `This webpage has been visited ${data} times`;
 }
@@ -32,3 +31,54 @@ btnScrollToTop.addEventListener("click", e => {
 window.addEventListener('scroll', e => {
   btnScrollToTop.style.display = window.scrollY > 400 ? 'block' : 'none';
 });
+
+//contact form
+const form = document.getElementById("contact-form");
+const statusMessage = document.getElementById("form-status");
+
+form.addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    
+    const captchaToken = grecaptcha.getResponse();
+    if (!captchaToken) {
+        statusMessage.innerText = "Please complete the CAPTCHA before submitting.";
+        return;
+    }
+
+    const data = {
+        name: form.name.value,
+        email: form.email.value,
+        message: form.message.value,
+        "g-recaptcha-response": captchaToken  
+    };
+
+    // Show loading message
+    statusMessage.innerText = "Sending...";
+
+    try {
+        const response = await fetch("contact_api_url", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+            statusMessage.innerText = result.message || "Thank you! Your message has been sent. I’ll get back to you shortly.";
+            form.reset();
+            grecaptcha.reset();  
+        } else {
+            statusMessage.innerText = result.message || "Something went wrong.";
+        }
+    } catch (error) {
+        console.error("Error sending email:", error);
+        statusMessage.innerText = "Network error. Please try again later.";
+    }
+});
+
+
+
