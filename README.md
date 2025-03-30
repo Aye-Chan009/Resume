@@ -32,7 +32,7 @@ This project was originally inspired by the [Cloud Resume Challenge](https://clo
 - **Frontend**: HTML5, CSS3, JavaScript
 - **Cloud Services**: AWS S3, CloudFront, Route 53, Lambda, DynamoDB, SES, API Gateway
 - **DevOps**: GitHub Actions
-- **Other Tools**: Font Awesome, Google Fonts, Google reCAPTCHA
+- **Other Tools**: Font Awesome, Google Fonts
 
 ## 📂 Project Structure
 
