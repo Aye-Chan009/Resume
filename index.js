@@ -61,7 +61,10 @@ form.addEventListener("submit", async function (e) {
         if (response.ok) {
             statusMessage.innerText = result.message || "Thank you! Your message has been sent. I will get back to you shortly.";
             form.reset();
-        } else {
+        } else if (response.status === 403) {
+            statusMessage.innerText = "The contact form has been temporarily paused to keep communication focused and reliable. Please reach out to me directly via email or LinkedIn.";
+        }
+          else {
             statusMessage.innerText = result.message || "Something went wrong.";
         }
     } catch (error) {
