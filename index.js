@@ -66,7 +66,7 @@ form.addEventListener("submit", async function (e) {
         }
     } catch (error) {
         console.error("Error sending email:", error);
-        statusMessage.innerText = "Network error. Please try again later.";
+        statusMessage.innerText = "The contact form has been temporarily paused to keep communication focused and reliable. Please reach out to me directly via email or LinkedIn.";
     }
 });
 
